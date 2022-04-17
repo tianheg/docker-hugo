@@ -36,6 +36,8 @@ jobs:
       - name: Upgrade Hugo
         if: ${{ steps.hugo_version.outputs.VERSION }} != ${{ steps.local_version.outputs.VERSION }}
         run: |
+          ls -al
+          pwd
           sed -i 's/HUGO_VERSIONN=${{ steps.local_version.outputs.VERSION }}/HUGO_VERSION=${{ steps.hugo_version.outputs.VERSION }}/' Dockerfile
           # https://linuxize.com/post/how-to-use-sed-to-find-and-replace-string-in-files/
       - name: Commit files
