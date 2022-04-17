@@ -1,9 +1,9 @@
 name: Upgrade Hugo
 
 on:
-  schedule:
-  - cron: '0 0 * * *'   # run 00:00 UTC
   workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'   # run 00:00 UTC
   push:
     branches:
       - main
@@ -42,9 +42,7 @@ jobs:
       - name: Upgrade Hugo
         if: ${{ steps.hugo_version.outputs.VERSION }} != ${{ steps.local_version.outputs.VERSION }}
         run: |
-          sed '3q;d' Dockerfile
           sed -i 's/${{ steps.local_version.outputs.VERSION }}/${{ steps.hugo_version.outputs.VERSION }}/' Dockerfile
-          sed '3q;d' Dockerfile
           # https://linuxize.com/post/how-to-use-sed-to-find-and-replace-string-in-files/
       - name: Commit files
         run: |
