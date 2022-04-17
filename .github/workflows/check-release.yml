@@ -1,8 +1,8 @@
-name: Check for Hugo releases
+name: Check for Hugo releases, upgrade
 
 on:
   schedule:
-  - cron: '0 */3 * * *'   # run every three hours
+  - cron: '0 0 * * *'   # run 00:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -35,3 +35,11 @@ jobs:
             echo "✅ All good for now."
             exit 0
           fi
+      - name: Upgrade Hugo
+        if: "${{ steps.hugo_version.outputs.VERSION }}" != "${{ steps.local_version.outputs.VERSION }}"
+        run: |
+          sed -i 's/HUGO_VERSIONN=${{ steps.local_version.outputs.VERSION }}/HUGO_VERSION=${{ steps.hugo_version.outputs.VERSION }}/' Dockerfile
+          # https://linuxize.com/post/how-to-use-sed-to-find-and-replace-string-in-files/
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Upgrade Hugo to v${{ steps.hugo_version.outputs.VERSION }}
