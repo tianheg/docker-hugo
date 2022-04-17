@@ -1,16 +1,9 @@
 name: Push DockerHub
 
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *'   # run 00:00 UTC
   push:
     branches:
       - main
-    paths-ignore:
-      - "**.md"
-      - .github/workflows/update-docker-desp.yml
-      - .github/workflows/check-release.yml
 
 jobs:
   docker:
