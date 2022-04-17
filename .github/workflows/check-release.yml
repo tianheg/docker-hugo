@@ -30,10 +30,8 @@ jobs:
           if [ "${{ steps.hugo_version.outputs.VERSION }}" != "${{ steps.local_version.outputs.VERSION }}" ]
           then
             echo "🚨 Needs updating!"
-            exit 1
           else
             echo "✅ All good for now."
-            exit 0
           fi
       - name: Upgrade Hugo
         if: ${{ steps.hugo_version.outputs.VERSION }} != ${{ steps.local_version.outputs.VERSION }}
