@@ -43,7 +43,7 @@ jobs:
         if: ${{ steps.hugo_version.outputs.VERSION }} != ${{ steps.local_version.outputs.VERSION }}
         run: |
           sed '3q;d' Dockerfile
-          sed 's/HUGO_VERSIONN=${{ steps.local_version.outputs.VERSION }}/HUGO_VERSION=${{ steps.hugo_version.outputs.VERSION }}/' Dockerfile
+          sed 's/${{ steps.local_version.outputs.VERSION }}/${{ steps.hugo_version.outputs.VERSION }}/' Dockerfile
           sed '3q;d' Dockerfile
           # https://linuxize.com/post/how-to-use-sed-to-find-and-replace-string-in-files/
       - name: Commit files
