@@ -38,6 +38,15 @@ jobs:
         run: |
           sed -i 's/HUGO_VERSIONN=${{ steps.local_version.outputs.VERSION }}/HUGO_VERSION=${{ steps.hugo_version.outputs.VERSION }}/' Dockerfile
           # https://linuxize.com/post/how-to-use-sed-to-find-and-replace-string-in-files/
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Upgrade Hugo to v${{ steps.hugo_version.outputs.VERSION }}" -a || true
+          # The above command will fail if no changes were present, so we ignore
+          # the return code.
+      - name: Push changes
+        uses: tianheg/github-actions@push
         with:
-          commit_message: Upgrade Hugo to v${{ steps.hugo_version.outputs.VERSION }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
