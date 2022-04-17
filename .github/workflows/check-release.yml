@@ -1,4 +1,4 @@
-name: Check for Hugo releases, upgrade
+name: Upgrade Hugo
 
 on:
   schedule:
