@@ -20,7 +20,7 @@ jobs:
         with:
           username: tianheg
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
+          
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -31,5 +31,5 @@ jobs:
         uses: peter-evans/dockerhub-description@v2
         with:
           username: tianheg
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: tianheg/hugo
