@@ -24,7 +24,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Get version
-        uses: ./.github/workflows/check-release.yml
+        id: local_version
+        run: |
+          LOCAL_VERSION=$(sed '3q;d' Dockerfile | cut -c18-23)
+          echo "::set-output name=VERSION::$LOCAL_VERSION"
 
       - name: Build and push
         uses: docker/build-push-action@v2
