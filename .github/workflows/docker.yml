@@ -23,8 +23,11 @@ jobs:
           username: tianheg
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Get version
+        uses: ./.github/workflows/check-release.yml
+
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: tianheg/hugo:latest
+          tags: tianheg/hugo:latest,tianheg/hugo:${{ steps.local_version.outputs.VERSION }}
