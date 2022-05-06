@@ -1,9 +1,7 @@
 name: Push DockerHub
 
 on:
-  push:
-    branches:
-      - main
+  push
 
 jobs:
   docker:
