@@ -21,7 +21,7 @@ do
         $HUGO server --watch=true --source="/home/$USER" --theme="$HUGO_THEME" --destination="$HUGO_DESTINATION" --baseURL="$HUGO_BASEURL" --bind="0.0.0.0" "$@" || exit 1
     else
 	    echo "Building one time..."
-        $HUGO --source="/home/$USER" --theme="$HUGO_THEME" --destination="$HUGO_DESTINATION" --baseURL="$HUGO_BASEURL" "$@" || exit 1
+        $HUGO --gc --minify --source="/home/$USER" --theme="$HUGO_THEME" --destination="$HUGO_DESTINATION" --baseURL="$HUGO_BASEURL" "$@" || exit 1
     fi
 
     if [[ $HUGO_REFRESH_TIME == -1 ]]; then
