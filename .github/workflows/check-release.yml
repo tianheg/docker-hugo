@@ -25,7 +25,7 @@ jobs:
       - name: Get Dockerfile Hugo version
         id: local_version
         run: |
-          LOCAL_VERSION=$(sed '3q;d' Dockerfile | cut -c18-23)
+          LOCAL_VERSION=$(sed '3q;d' Dockerfile | cut -c18-)
           echo "::set-output name=VERSION::$LOCAL_VERSION"
       - name: Compare versions
         id: update
