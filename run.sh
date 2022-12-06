@@ -12,6 +12,8 @@ echo "ARGS" $@
 HUGO=/usr/bin/hugo
 echo "Hugo path: $HUGO"
 
+git config --global --add safe.directory /src
+
 while [ true ]
 do
     if [[ $HUGO_WATCH != 'false' ]]; then
