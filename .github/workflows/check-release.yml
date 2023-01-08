@@ -21,12 +21,12 @@ jobs:
         id: hugo_version
         run: |
           HUGO_VERSION=$(curl --silent https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r .tag_name | sed 's/v//')
-          echo "::set-output name=VERSION::$HUGO_VERSION"
+          echo "VERSION=$HUGO_VERSION" >> $GITHUB_OUTPUT
       - name: Get Dockerfile Hugo version
         id: local_version
         run: |
           LOCAL_VERSION=$(sed '3q;d' Dockerfile | cut -c18-)
-          echo "::set-output name=VERSION::$LOCAL_VERSION"
+          echo "VERSION=$LOCAL_VERSION" >> $GITHUB_OUTPUT
       - name: Compare versions
         id: update
         run: |
