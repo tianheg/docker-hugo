@@ -3,6 +3,7 @@
 ```sh
 docker run -d \
 --name blog_live \
+--restart always \
 -v $(pwd):/src \
 -p 1314:1313 \
 -e HUGO_WATCH=true -e HUGO_BASEURL=http://127.0.0.1 \
