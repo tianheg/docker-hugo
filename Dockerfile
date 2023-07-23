@@ -11,9 +11,8 @@ RUN wget -O - https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION
     && rm -rf /tmp/LICENSE.md \
     && rm -rf /tmp/README.md
 
-RUN apk add --update git asciidoctor libc6-compat libstdc++ \
-    && apk upgrade \
-    && apk add --no-cache ca-certificates \
+RUN apk add --no-cache asciidoctor ca-certificates gcompat git libc6-compat libstdc++ \
+    && ln -s /lib/libc.so.6 /usr/lib/libresolv.so.2 \
     && chmod 0777 /run.sh
 
 VOLUME /src
