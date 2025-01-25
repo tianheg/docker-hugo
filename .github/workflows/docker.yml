@@ -33,4 +33,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: latest,${{ env.VERSION }}
+          tags: tianheg/hugo:latest,tianheg/hugo:${{ env.VERSION }}
