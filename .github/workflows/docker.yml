@@ -32,4 +32,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: tianheg/hugo:latest,tianheg/hugo:${{ steps.local_version.outputs.VERSION }}
+          tags: latest,${{ steps.local_version.outputs.VERSION }}
