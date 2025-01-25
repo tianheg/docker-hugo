@@ -26,10 +26,10 @@ jobs:
         id: local_version
         run: |
           LOCAL_VERSION=$(sed '3q;d' Dockerfile | cut -c18-24)
-          echo "::set-output name=VERSION::$LOCAL_VERSION"
+          echo "VERSION=$LOCAL_VERSION" >> $GITHUB_ENV
 
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: latest,${{ steps.local_version.outputs.VERSION }}
+          tags: latest,${{ env.VERSION }}
