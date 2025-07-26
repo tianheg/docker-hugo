@@ -1,6 +1,6 @@
 FROM alpine
 
-ENV HUGO_VERSION=null
+ENV HUGO_VERSION=0.148.1
 ENV HUGO_TYPE=_extended
 
 COPY ./run.sh /run.sh
